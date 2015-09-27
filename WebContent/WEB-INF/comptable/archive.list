@@ -1,0 +1,18 @@
+{#func:this.setEditable(false)#}
+{#koDisplay:net.display.DispArchive#}
+{#mask:<td>{visiteur}</td><td>{nbJustificatifs}</td><td>{fraisforfait}</td><td>{fraishorsforfait}</td><td>{montantestime}</td><td>{montantValide}</td>#}
+{#func:this.addGroupByMask({annee})#}
+{#func:this.addGroupByMask({Mois})#}
+{#set:this.isShowCaption=true#}
+{#set:this.listContentUrl=archives.do#}
+{_ajx}
+{_listContent}
+	{_filtre}
+	{_page}
+<fieldset class="boxButtons">
+{_pageCounter}
+{_navBarre}
+<div class="btn" id="btDelete"><span class="deleteZero">Supprimer les fiches sélectionnées</span></div>
+<div class="inline field"><input type="checkbox" id="ckSelectAll"><label for="ckSelectAll">Sélectionner toutes les fiches</label></div>
+</fieldset>
+{/_listContent}

@@ -1,0 +1,13 @@
+{#func:this.setEditable(false)#}
+{#mask:<td>{libelle}</td>#}
+<div class='infoDlg' style="width:400px"><b>Attention, vous allez archiver un ensemble de fiches,et cette opération est irréversible.</b><br>
+Souhaitez-vous continuer ?</div>
+{_listContent}
+	<form id="frmArchiveAll" id="frmArchiveAll">
+	<div class="innerDlg">
+		<div class='fsDlg'>
+			{_page}
+		</div>
+	</div>
+	</form>
+{/_listContent}

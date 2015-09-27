@@ -1,0 +1,24 @@
+{#set:this.ajaxIncludes=true#}
+{#koDisplay:"net.display.DispFicheVisiteur"#}
+{#redirectUrl:"submit.do"#}
+
+<fieldset>{idVisiteur}</fieldset>
+{_form}
+{_fieldset}
+<div class='inline'>{idEtat}</div>
+<div class='inline'>{mois}</div>
+<div class='inline'>{dateModif}</div>
+<hr>
+<div class='inline'>{nbJustificatifs}</div>
+<div class='inline'>{montantValide}</div>
+
+{lignefraisforfaits}{lignefraishorsforfaits}
+{/_fieldset}
+{/_form}
+<fieldset class="boxButtons">
+<input type="button" class="btn" id="btSubmitFiche" value="Enregistrer les frais">
+<input type="button" class="btn" id="btCancelFiche" value="Fermer sans enregistrer">
+<input type="button" class="btn" id="btDeleteFiche" value="Supprimer la fiche">
+<input type="button" class="btn" id="btTest" value="Déconnexion">
+<input type="hidden" id="id" value="%id%">
+</fieldset>

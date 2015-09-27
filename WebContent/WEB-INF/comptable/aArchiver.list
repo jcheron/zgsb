@@ -1,0 +1,22 @@
+{#className:net.kernel.KFichefrais#}
+{#koDisplay:net.display.DispFicheAArchiver#}
+{#set:this.ajaxIncludes=true#}
+{#func:this.setEditable(false)#}
+{#set:this.koDetails=false#}
+{#set:this.isShowCaption=true#}
+{#set:this.groupByMask="{Mois}"#}
+{#mask:<td>{ckEtat}</td><td>{visiteur}</td><td>{Estimé}</td><td>{montantValide}</td><td>{dateModif}</td><td>{nb FF}</td><td>{nb FHF}</td><td>{Voir}</td>#}
+{#set:this.listContentUrl=aArchiver.do#}
+{#set:this.editFormUrl=aArchiver.do#}
+{_ajx}
+{_listContent}
+	{_filtre}
+	<form id="frmArchiver" id="frmArchiver">
+	{_page}
+	</form>
+<fieldset class="boxButtons">
+<div class="btn" id="btArchiveByMonth"><span class="archive">Archiver les fiches par mois</span></div>
+<div class="btn" id="btArchive"><span class="archive">Archiver les fiches sélectionnées</span></div>
+<div class="inline field"><input type="checkbox" id="ckArchiverAll"><label for="ckArchiverAll">Sélectionner toutes les fiches</label></div>
+</fieldset>
+{/_listContent}

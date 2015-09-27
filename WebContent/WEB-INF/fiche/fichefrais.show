@@ -1,0 +1,14 @@
+{#set:this.ajaxIncludes=true#}
+{#koDisplay:"net.display.DispFicheVisiteur"#}
+<fieldset>{idVisiteur}</fieldset>
+{_fieldset}
+<div class='inline'>{idEtat}</div>
+<div class='inline'>{mois}</div>
+<div class='inline'>{dateModif}</div>
+<hr>
+<div class='inline'>{nbJustificatifs}</div>
+<div class='inline'>{montantValide}</div>
+
+{lignefraisforfaits}{lignefraishorsforfaits}
+{/_fieldset}
+<input type="button" id="btRetourListe" value="Revenir à la liste" class="btn">

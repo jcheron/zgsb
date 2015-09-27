@@ -1,0 +1,8 @@
+{#koDisplay:"net.display.DispFicheAValider"#}
+{_fieldset}
+{idVisiteur}
+{dateModif}
+{montantValide}
+{lignefraisforfaits}
+{lignefraishorsforfaits}
+{/_fieldset}

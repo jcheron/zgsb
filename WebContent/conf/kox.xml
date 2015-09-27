@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<controllers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://api.kobject.net/xml/controller.xsd">
+	<class name="KTester">
+		<member control="cmb" name="_cls" type="string" />
+		<member control="range" max="6" min="0" name="_depth" />
+		<member name="_useCache" type="boolean" />
+		<member control="checkedlist" multiple="true" name="_field" />
+	</class>
+	<class name="KEtat">
+		<member max="30" name="libelle" required="0" type="string" />
+	</class>
+	<class name="KFichefrais" caption="Fiche de Frais">
+		<member name="idVisiteur" required="1" type="int" caption="Visiteur" control="readonlylist"/>
+		<member max="6" name="mois" required="1" type="string" caption="Mois" control="readonlylist" list="{Janv,Févr,Mars,Avr,Mai,Juin,Juil,Aout,Sept,Oct,Nov,Déc}"/>
+		<member max="20" name="nbJustificatifs" required="0" type="int" caption="Nb de justificatifs" control="number" min="1" />
+		<member max="12" name="montantValide" required="0" type="float" caption="Montant validé" control="readonlytext"/>
+		<member max="10" name="dateModif" required="1" type="date" caption="Date de modification" control="readonlytext"/>
+		<member max="2" name="idEtat" required="1" type="string" caption="Etat" control="readonlylist"/>
+		<member name="lignefraisforfaits" control="listformmany" multiple="true" caption="Frais forfaitaires"/>
+		<member name="lignefraishorsforfaits" control="listform" multiple="true" caption="Frais hors forfait"/>
+		
+	</class>
+	<class name="KFraisforfait">
+		<member max="7" name="montant" required="0" type="float" caption="Montant"/>
+		<member max="20" name="libelle" required="0" type="string" caption="Libellé"/>
+	</class>
+	<class name="KLignefraisforfait" display="net.display.DispFraisForfait">
+		<member max="3" name="idFraisforfait" required="0" type="string" control="readonlylist" caption="Libellé" options=""/>
+		<member max="11" name="quantite" required="0" type="int" caption="Quantité" control="number"/>
+		<member name="total" control="label" caption="Total"/>
+		<member name="validFF" caption="Accepté ?" type="boolean"/>
+		<member max="11" name="idFichefrais" required="1" type="int" control="hidden"/>
+	</class>
+	<class name="KLignefraishorsforfait" caption="Frais hors forfait" display="net.display.DispFraisHorsForfait">
+		<member max="10" name="dateHF" required="1" type="date" caption="Date"/>
+		<member max="100" name="libelle" required="1" type="string" caption="Libellé" transform="xssClean"/>
+		<member max="12" name="montant" required="1" type="float" caption="Montant"/>
+		<member name="validHF" caption="Accepté ?" type="boolean"/>
+		<member max="11" name="idFichefrais" required="1" type="int" control="hidden"/>
+	</class>
+	<class name="KVisiteur" caption="Visiteur" transformer="net.controller.KMyTransformer" display="net.display.DispVisiteur">
+		<member max="20" name="login" required="1" type="string" caption="Login" transform="remplaceEspaces|xssClean"/>
+		<member max="20" name="mdp" required="0" type="string" control="password" caption="Mot de passe" transform="xssClean"/>
+		<member max="30" name="nom" required="0" type="string" transform="toUpper|trim|xssClean"/>
+		<member max="30" name="prenom" required="0" type="string" transform="firstUpper|trim|xssClean"/>
+		<member max="10" name="dateEmbauche" required="0" type="date" />
+		<member max="5" name="cp" required="0" type="num" transform="trim|xssClean"/>
+		<member max="30" name="adresse" required="0" type="string" transform="trim|xssClean"/>
+		<member max="30" name="ville" required="0" type="string" control="ajaxlist" list="[net.kernel.KVisiteur:ville]"/>
+	</class>
+	<class name="KHelp">
+		<member name="key" type="string"/>
+		<member name="caption" type="string"/>
+		<member name="message" type="string"/>
+	</class>
+	<class name="KArchive" caption="Archive">
+		<member name="fraisforfait" caption="Frais forfaitaires"/>
+		<member name="fraishorsforfait" caption="Frais hors forfait"/>
+	</class>
+	<class name="KFicheParMois">
+		<member name="nb"/>
+		<member name="mois"/>
+	</class>
+	<class name="KMenu"></class>
+</controllers>

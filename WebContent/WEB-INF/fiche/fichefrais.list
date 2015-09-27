@@ -1,0 +1,13 @@
+{#set:this.ajaxIncludes=true#}
+{#func:this.setEditable(false)#}
+{#koDisplay:"net.display.DispFicheVisiteur"#}
+{#set:this.groupByMask="{etat}"#}
+{_navBarre}
+{#mask:<td>{Mois}</td><td>{Frais forfaitaires:lignefraisforfaits.listeFraisVisiteur}</td>
+<td>{Frais hors F:lignefraishorsforfaits.listeFraisVisiteur}</td><td>{montantValide}</td><td>{Voir}</td>#}
+{#set:this.isShowCaption=true#}
+{#set:this.listContentUrl=rMesFiches.do#}
+{_ajx}
+{_listContent}
+	{_page}
+{/_listContent}

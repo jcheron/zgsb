@@ -1,0 +1,22 @@
+{#className:net.kernel.KVisiteur#}
+{#set:this.hasPageHeader=false#}
+{#set:this.ajaxIncludes=true#}
+{_form}
+<fieldset style="width:360px">
+<legend>Connexion</legend>
+<div class='inline'>{login}</div>
+<div class='inline'>{mdp}</div>
+</fieldset>
+<fieldset style="width:360px">
+	<legend>Connexion pour tests</legend>
+	<div class="field">
+		<input type="radio" name="testVi" id="btCoVisiteur"><label for="btCoVisiteur">Visiteur (dandre)</label>
+		<input type="radio" name="testVi" id="btCoComptable"><label for="btCoComptable">Comptable (mco)</label>
+		<input type="radio" checked name="testVi" id="btAleatoire"><label for="btAleatoire">Visiteur aléatoire</label>
+	</div>
+</fieldset>
+<fieldset class="boxButtons" style="width:360px">
+<input type="button" class="btn" value="Connexion à l'application" id="btConnexion">
+</fieldset>
+{/_form}
+<div id="divAction"></div>

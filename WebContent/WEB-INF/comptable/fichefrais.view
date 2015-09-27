@@ -1,0 +1,15 @@
+{#set:this.ajaxIncludes=true#}
+
+<fieldset>{idVisiteur}</fieldset>
+{_form}
+{_fieldset}
+<div class='inline'>{idEtat}</div>
+<div class='inline'>{mois}</div>
+<div class='inline'>{dateModif}</div>
+<hr>
+<div class='inline'>{montantValide}</div>
+<div class='inline'>{nbJustificatifs}</div>
+
+{lignefraisforfaits}{lignefraishorsforfaits}
+{/_fieldset}
+{/_form}

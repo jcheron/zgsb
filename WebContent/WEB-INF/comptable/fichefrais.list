@@ -1,0 +1,16 @@
+{#koDisplay:net.display.DispFicheAValider#}
+{#set:this.ajaxIncludes=true#}
+{#func:this.setEditable(true)#}
+{#set:this.koDetails=false#}
+{#set:this.isShowCaption=true#}
+{#mask:<td>{ckEtat}</td><td>{visiteur}</td><td>{montantValide}</td><td>{dateModif}</td><td>{Frais forfaitaires:lignefraisforfaits.listeFrais}</td><td>{Frais hors F:lignefraishorsforfaits.listeFrais}</td>#}
+{#set:this.editFormUrl=coFiche.do#}
+{#set:this.listContentUrl=fichesAValider.do#}
+{_ajx}
+{_listContent}
+	{_filtre}
+	{_page}
+<fieldset class="boxButtons">
+<div class="btn" id="btValidAll"><span class='isValid'>Valider toutes les fiches</span>
+</fieldset>
+{/_listContent}

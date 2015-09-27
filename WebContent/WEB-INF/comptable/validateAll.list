@@ -1,0 +1,18 @@
+{#className:net.kernel.KFichefrais#}
+{#func:this.setEditable(false)#}
+{#set:this.isShowCaption=false#}
+{#sql:SELECT * FROM fichefrais where idEtat='CL'#}
+{#koDisplay:net.display.DispFicheAValider#}
+{#set:this.ajaxIncludes=true#}
+{#mask:<td>{ckEtatCB}</td>#}
+<div class='infoDlg' style="width:400px"><b>Attention, vous allez valider toutes les fiches du mois,</b><br>
+Souhaitez-vous continuer ?</div>
+{_listContent}
+	<form id="frmValidateAll" id="frmValidateAll">
+	<div class="innerDlg">
+		<div class='fsDlg'>
+			{_page}
+		</div>
+	</div>
+	</form>
+{/_listContent}

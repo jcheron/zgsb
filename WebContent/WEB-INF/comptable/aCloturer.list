@@ -1,0 +1,22 @@
+{#className:net.kernel.KFichefrais#}
+{#koDisplay:net.display.DispFicheACloturer#}
+{#set:this.ajaxIncludes=true#}
+{#func:this.setEditable(false)#}
+{#set:this.koDetails=false#}
+{#set:this.isShowCaption=true#}
+{#set:this.groupByMask="{Mois}"#}
+{#mask:<td>{ckEtat}</td><td>{visiteur}</td><td>{Estimé}</td><td>{montantValide}</td><td>{dateModif}</td><td>{nb FF}</td><td>{nb FHF}</td><td>{Voir}</td>#}
+{#set:this.listContentUrl=aCloturer.do#}
+{#set:this.editFormUrl=aCloturer.do#}
+{_ajx}
+{_listContent}
+	{_filtre}
+	<form id="frmCloturer" id="frmCloturer">
+	{_page}
+	</form>
+<fieldset class="boxButtons">
+<div class="btn" id="btClose"><span class="close">Cloturer les fiches sélectionnées</span></div>
+<div class="btn" id="btCloseAll"><span class="checkAll">Sélectionner toutes les fiches</span></div>
+<div class="btn" id="btDeleteZero"><span class="deleteZero">Supprimer les fiches vides</span></div>
+</fieldset>
+{/_listContent}

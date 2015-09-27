@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<mainController xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://api.kobject.net/xml/mapping-1.0.0.25-1-debug.xsd">
+	<mappings>
+        <mapping requestURL="submit.do" responseURL="/submit.jsp"/>
+        <mapping classControl="net.controller.CoControl" requestURL="/co/menu.do" responseURL="/WEB-INF/comptable/coMenu.jsp"/>
+        <mapping mainControl="true" requestURL="/vi/menu.do" responseURL="/WEB-INF/visiteur/viMenu.jsp"/>
+        <mapping classControl="net.controller.CoControl" requestURL="/co/main.do" responseURL="/WEB-INF/comptable/coMain.jsp"/>
+        <mapping mainControl="true" requestURL="/vi/main.do" responseURL="/WEB-INF/visiteur/viMain.jsp"/>
+        <mapping mainControl="true" requestURL="/co/displayFiche.do" responseURL="/WEB-INF/comptable/fichefrais.show"/>
+        <mapping mainControl="true" requestURL="/co/infoUser.do" responseURL="/WEB-INF/visiteur/infoUser.jsp"/>
+        <mapping requestURL="main.do" responseURL="/WEB-INF/main.jsp"/>
+        <mapping mainControl="true" requestURL="rActiveFiche.do" responseURL="/activeFiche.act"/>
+        <mapping mainControl="true" requestURL="activeFiche.do" responseURL="/WEB-INF/fiche/fichefrais.view"/>
+        <mapping mainControl="true" requestURL="rMesFiches.do" responseURL="/mesFiches.act"/>
+        <mapping mainControl="true" requestURL="mesFiches.do" responseURL="/WEB-INF/fiche/fichefrais.list"/>
+        <mapping mainControl="true" requestURL="deleteFiche.do" responseURL="/deleteFiche.act"/>
+        <mapping classControl="net.controller.FicheControl" requestURL="valideFiche.do" responseURL="/valideFiche.act"/>
+        <mapping mainControl="true" requestURL="dFiche.do" responseURL="/dFiche.act"/>
+        <mapping mainControl="true" requestURL="displayFiche.do" responseURL="/WEB-INF/fiche/fichefrais.show"/>
+        <mapping requestURL="menu.do" responseURL="/WEB-INF/menu.jsp"/>
+        <mapping requestURL="index.do" responseURL="WEB-INF/index.jsp"/>
+        <mapping requestURL="login.do" responseURL="WEB-INF/visiteur/frmLogin.view"/>
+        <mapping requestURL="infoUser.do" responseURL="WEB-INF/visiteur/infoUser.jsp"/>
+        <mapping requestURL="invalidVisiteur.do" responseURL="WEB-INF/visiteur/invalidVisiteur.jsp"/>
+        <mapping requestURL="quit.do" responseURL="WEB-INF/visiteur/quit.jsp"/>
+        <mapping mainControl="true" requestURL="fiches.do" responseURL="WEB-INF/fichefrais.list"/>
+        <mapping classControl="net.controller.CoControl" requestURL="fichesAValider.do" responseURL="/WEB-INF/comptable/fichefrais.list"/>
+        <mapping classControl="net.controller.CoControl" requestURL="coFiche.do" responseURL="/WEB-INF/comptable/fichefrais.view"/>
+        <mapping classControl="net.controller.CoControl" requestURL="updateFicheStatut.do" responseURL="/updateFicheStatut.act"/>
+        <mapping classControl="net.controller.CoControl" requestURL="deleteZero.do" responseURL="/deleteZero.act"/>
+        <mapping mainControl="true" requestURL="updateOneFF.do" responseURL="/updateOneFF.act"/>
+        <mapping mainControl="true" requestURL="updateOneHF.do" responseURL="/updateOneHF.act"/>
+        <mapping mainControl="true" requestURL="aCloturer.do" responseURL="/WEB-INF/comptable/aCloturer.list"/>
+        <mapping mainControl="true" requestURL="cloturerFiches.do" responseURL="/cloturerFiches.act"/>
+        <mapping mainControl="true" requestURL="rembourserFiches.do" responseURL="/rembourserFiches.act"/>
+        <mapping mainControl="true" requestURL="archiverFiches.do" responseURL="/archiverFiches.act"/>
+        <mapping mainControl="true" requestURL="archiverFichesParMois.do" responseURL="/archiverFichesParMois.act"/>
+        <mapping requestURL="invalidControl.do" responseURL="/invalidControl.act"/>
+        <mapping requestURL="validateSelected.do" responseURL="/validateSelected.act"/>
+        <mapping requestURL="visiteurAleatoire.do" responseURL="/visiteurAleatoire.act"/>
+        <mapping requestURL="help.do" responseURL="/help.act"/>
+        <mapping requestURL="allHelp.do" responseURL="/HELP.act"/>
+        <mapping requestURL="helpIndex.do" responseURL="/helpIndex.act"/>
+        <mapping requestURL="showHelpByIndex.do" responseURL="/showHelpByIndex.act"/>
+        <mapping mainControl="true" requestURL="aRembourser.do" responseURL="/WEB-INF/comptable/aRembourser.list"/>
+        <mapping mainControl="true" requestURL="aArchiver.do" responseURL="/WEB-INF/comptable/aArchiver.list"/>
+        <mapping mainControl="true" requestURL="validateAll.do" responseURL="/WEB-INF/comptable/validateAll.list"/>
+        <mapping mainControl="true" requestURL="archives.do" responseURL="/WEB-INF/comptable/archive.list"/>
+        <mapping mainControl="true" requestURL="fichesParMois.do" responseURL="/WEB-INF/comptable/ficheparmois.list"/>
+        <mapping requestURL="{#(.+?)#}.do" responseURL="/$1.jsp"/>
+    </mappings>
+	<filters/>
+	<ajax-includes>
+        <request requestURL="index.do">
+            <js triggerEvent="click" triggerSelector="#head">
+                <include targetId="divMain" targetURL="co/main.do">
+                    <include targetId="divMenu" targetURL="co/menu.do">
+                        <include targetId="divMessageConnexion" targetURL="infoUser.do"/>
+                    </include>
+                </include>
+            </js>
+            <js triggerEvent="load" triggerSelector="body">
+                <fireEvent triggerEvent="click" triggerId="head"/>
+            </js>
+        </request>
+        <request requestURL="menu.do">
+            <js triggerEvent="click" triggerSelector="#btEnter">
+                <include targetId="divFrmLogin" targetURL="login.do">
+                    <message targetId="divMessageConnexion">''</message>
+                    <message targetId="divMain">''</message>
+                </include>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btDocumentation">
+                <include targetId="fixedHelp" targetURL="helpIndex.do">
+                    <fireEvent triggerEvent="click" triggerId="allId"/>
+                </include>
+            </js>
+        </request>
+        <request requestURL="login.do">
+            <js triggerEvent="click" triggerSelector="#btConnexion">
+                <include formName="frmKVisiteur" method="POST" targetId="divMessageConnexion" targetURL="co/infoUser.do">
+                    <include targetId="divMenu" targetURL="co/menu.do">
+                        <include targetId="divMain" targetURL="co/main.do">
+                            <message targetId="divFrmLogin">''</message>
+                            <message targetId="fixedHelp">''</message>
+                        </include>
+                    </include>
+                </include>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btCoVisiteur">
+                <function script="$('login').value='dandre';$('mdp').value='oppg5';"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btCoComptable">
+                <function script="$('login').value='mco';$('mdp').value='mco';"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btAleatoire">
+                <include targetURL="visiteurAleatoire.do"/>
+            </js>
+            <js triggerEvent="load" triggerSelector="body">
+                <fireEvent triggerEvent="click" triggerId="btAleatoire"/>
+            </js>
+        </request>
+        <request requestURL="infoUser.do">
+            <js keyCode="115" triggerEvent="click" triggerSelector="#btDisconnect">
+                <include targetId="divFrmLogin" targetURL="quit.do">
+                    <include targetId="divMenu" targetURL="co/menu.do">
+                        <message targetId="divMain">''</message>
+                        <message targetId="divMessageConnexion" timeout="4000">'Déconnexion réussie'</message>
+                        <message targetId="fixedHelp">''</message>
+                    </include>
+                </include>
+            </js>
+        </request>
+        <request requestURL="invalidVisiteur.do">
+            <js triggerEvent="click" triggerSelector="#btTryAgain">
+                <include targetId="divFrmLogin" targetURL="login.do">
+                    <message targetId="divMessageConnexion">''</message>
+                </include>
+            </js>
+        </request>
+        <request requestURL="quit.do">
+            <js triggerEvent="load" triggerSelector="body">
+                <showHide targetSelector=".box" visible="0"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btConnect">
+                <include targetId="divFrmLogin" targetURL="login.do"/>
+            </js>
+        </request>
+        <request requestURL="/vi/menu.do">
+            <js triggerEvent="load" triggerSelector="body">
+                <selector allowNull="false" event="click" selectedStyle="{'fontWeight':'bolder','backgroundColor':'#32363C'}" selector="#menuVisiteur a" startIndex="0">
+                    <message targetId="menuMessage">target.title</message>
+                </selector>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btActiveFiche">
+                <include targetId="divAction" targetURL="rActiveFiche.do"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btMesFiches">
+                <include targetId="divAction" targetURL="rMesFiches.do"/>
+            </js>
+        </request>
+        <request requestURL="/vi/main.do">
+            <js triggerEvent="load" triggerSelector="body">
+                <selector allowNull="false" event="click" selectedStyle="{}" selector="#mainVisiteur .bigBtn" startIndex="0">
+                    <message targetId="menuMessage">target.title</message>
+                </selector>
+                <selector allowNull="false" event="mouseover" selectedStyle="{'color':'#4A8FB6'}" selector="#mainVisiteur .bigBtn" startIndex="0">
+                    <message targetId="mainInfo">$$('v-'+target.id)</message>
+                </selector>
+            </js>
+            <js triggerEvent="click" triggerSelector="#_btActiveFiche">
+                <fireEvent triggerEvent="click" triggerId="btActiveFiche"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#_btMesFiches">
+                <fireEvent triggerEvent="click" triggerId="btMesFiches"/>
+            </js>
+        </request>
+        <request requestURL="activeFiche.do">
+            <js triggerEvent="click" triggerSelector="#btSubmitFiche">
+                <include formName="frmKFichefrais" method="POST" targetId="divActionMessage" targetParams="id={jsv:koKeyValue}" targetURL="valideFiche.do">
+                    <include targetId="divAction" targetURL="rMesFiches.do"/>
+                </include>
+            </js>
+            <js keyCode="27" triggerEvent="click" triggerSelector="#btCancelFiche">
+                <message targetId="divActionMessage" timeout="5000">'Modifications annulées'</message>
+                <fireEvent triggerEvent="click" triggerId="btMesFiches"/>
+            </js>
+            <js keyCode="46" triggerEvent="click" triggerSelector="#btDeleteFiche">
+                <include targetId="divActionMessage" targetURL="deleteFiche.do">
+                    <include targetId="divAction" targetURL="rMesFiches.do"/>
+                </include>
+            </js>
+        </request>
+        <request requestURL="mesFiches.do">
+            <js triggerEvent="click" triggerSelector="#list-KFichefrais span">
+                <include targetId="divAction" targetURL="dFiche.do"/>
+            </js>
+        </request>
+        <request requestURL="displayFiche.do">
+            <js triggerEvent="click" triggerSelector="#btRetourListe">
+                <fireEvent triggerEvent="click" triggerId="btMesFiches"/>
+            </js>
+        </request>
+        <request requestURL="/co/menu.do">
+            <js triggerEvent="load" triggerSelector="body">
+                <selector allowNull="false" event="click" selectedStyle="{'fontWeight':'bolder','backgroundColor':'#32363C'}" selector="#menuComptable a" startIndex="0">
+                    <message targetId="menuMessage">target.title</message>
+                </selector>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btFicheAValider">
+                <include targetId="divAction" targetURL="fichesAValider.do"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btCloturer">
+                <include targetId="divAction" targetURL="aCloturer.do"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btFicheARembourser">
+                <include targetId="divAction" targetURL="aRembourser.do"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btFicheAArchiver">
+                <include targetId="divAction" targetURL="aArchiver.do"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btArchives">
+                <include targetId="divAction" targetURL="archives.do"/>
+            </js>
+        </request>
+        <request requestURL="/co/main.do">
+            <js triggerEvent="load" triggerSelector="body">
+                <selector allowNull="false" event="click" selectedStyle="{}" selector="#mainComptable .bigBtn" startIndex="0">
+                    <message targetId="menuMessage">target.title</message>
+                </selector>
+                <selector allowNull="false" event="mouseover" selectedStyle="{'color':'#4A8FB6'}" selector="#mainComptable .bigBtn" startIndex="0">
+                    <message targetId="mainInfo">$$('v-'+target.id)</message>
+                </selector>
+            </js>
+            <js triggerEvent="click" triggerSelector="#_btFicheAValider">
+                <fireEvent triggerEvent="click" triggerId="btFicheAValider"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#_btCloturer">
+                <fireEvent triggerEvent="click" triggerId="btCloturer"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#_btFicheARembourser">
+                <fireEvent triggerEvent="click" triggerId="btFicheARembourser"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#_btFicheAArchiver">
+                <fireEvent triggerEvent="click" triggerId="btFicheAArchiver"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#_btArchives">
+                <fireEvent triggerEvent="click" triggerId="btArchives"/>
+            </js>
+        </request>
+        <request requestURL="fichesAValider.do">
+            <js triggerEvent="click" triggerSelector="#list-KFichefrais .ckEtat">
+                <include targetId="divActionMessage" targetParams="etat=VA" targetURL="updateFicheStatut.do">
+                    <include targetId="_ajxContent" targetURL="fichesAValider.do"/>
+                </include>
+            </js>
+            <js triggerEvent="click" triggerSelector="#list-KFichefrais .validFF">
+                <include targetId="divActionMessage" targetURL="updateOneFF.do"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#list-KFichefrais .validHF">
+                <include targetId="divActionMessage" targetURL="updateOneHF.do"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btValidAll">
+                <includeDialog>
+                    <dialog modal="false" title="Validation des fiches">
+                        <button caption="Valider les fiches sélectionnées">
+                            <include formName="frmValidateAll" method="POST" targetId="divActionMessage" targetURL="validateSelected.do">
+                                <include targetId="_ajxContent" targetURL="fichesAValider.do"/>
+                            </include>
+                            <function script="return true;"/>
+                        </button>
+                        <button caption="Annuler">
+                            <function script="return true;"/>
+                        </button>
+                    </dialog>
+                    <include targetId="lb-Validation_des_fiches-box" targetURL="validateAll.do"/>
+                </includeDialog>
+            </js>
+        </request>
+        <request requestURL="validateSelected.do">
+            <js triggerEvent="click" triggerSelector="#btCancel">
+                <include formName="frmCancel" method="POST" targetId="divActionMessage" targetURL="validateSelected.do">
+                    <include targetId="_ajxContent" targetURL="fichesAValider.do"/>
+                </include>
+            </js>
+        </request>
+        <request requestURL="updateFicheStatut.do">
+            <js triggerEvent="click" triggerSelector="#btCancelValidation">
+                <include targetId="divActionMessage" targetParams="request.id={jsv:idFiche},etat=CL,_toToogle={jsv:_toToogle}" targetURL="updateFicheStatut.do">
+                    <include targetId="_ajxContent" targetURL="fichesAValider.do"/>
+                </include>
+            </js>
+        </request>
+        <request requestURL="aCloturer.do">
+            <js triggerEvent="click" triggerSelector="#btClose">
+                <include formName="frmCloturer" method="POST" targetId="divActionMessage" targetURL="cloturerFiches.do">
+                    <include targetId="_ajxContent" targetURL="aCloturer.do"/>
+                </include>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btCloseAll">
+                <function script="Forms.Utils.applyFunction(function(obj){obj.checked=true;},Forms.Utils.getElementsByClassName('toCloseCk'));"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#list-KFichefrais .see">
+                <function script="lb=new Forms.AjaxLightBox('lbFiche','Fiche de frais','co/displayFiche.do','id='+target.id.replace('see-',''));lb.modal=false;lb.addAction('btCloseSee','Fermer',function(){return true;},27);lb.get();"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btDeleteZero">
+                <include targetId="divActionMessage" targetURL="deleteZero.do">
+                    <include targetId="_ajxContent" targetURL="aCloturer.do"/>
+                </include>
+            </js>
+        </request>
+        <request requestURL="cloturerFiches.do">
+            <js triggerEvent="click" triggerSelector="#btCancel">
+                <include formName="frmCancel" method="POST" targetId="divActionMessage" targetURL="cloturerFiches.do">
+                    <include targetId="_ajxContent" targetURL="aCloturer.do"/>
+                </include>
+            </js>
+        </request>
+        <request requestURL="aRembourser.do">
+            <js triggerEvent="click" triggerSelector="#btRembourser">
+                <include formName="frmRembourser" method="POST" targetId="divActionMessage" targetURL="rembourserFiches.do">
+                    <include targetId="_ajxContent" targetURL="aRembourser.do"/>
+                </include>
+            </js>
+            <js triggerEvent="click" triggerSelector="#ckRembourserAll">
+                <function script="Forms.Utils.check(this.checked,'toPayCk');"/>
+            </js>
+        </request>
+        <request requestURL="rembourserFiches.do">
+            <js triggerEvent="click" triggerSelector="#btCancel">
+                <include formName="frmCancel" method="POST" targetId="divActionMessage" targetURL="rembourserFiches.do">
+                    <include targetId="_ajxContent" targetURL="aRembourser.do"/>
+                </include>
+            </js>
+        </request>
+        <request requestURL="aArchiver.do">
+            <js triggerEvent="click" triggerSelector="#ckArchiverAll">
+                <function script="Forms.Utils.check(this.checked,'toArchiveCk');"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#list-KFichefrais .see">
+                <function script="lb=new Forms.AjaxLightBox('lbFiche','Fiche de frais','co/displayFiche.do','id='+this.id.replace('see-',''));lb.modal=false;lb.addAction('btClose','Fermer',function(){return true;},27);lb.get();"/>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btArchive">
+                <include formName="frmArchiver" method="POST" targetId="divActionMessage" targetURL="archiverFiches.do">
+                    <include targetId="_ajxContent" targetURL="aArchiver.do"/>
+                </include>
+            </js>
+            <js triggerEvent="click" triggerSelector="#btArchiveByMonth">
+                <includeDialog>
+                    <dialog modal="false" title="Archiver">
+                        <button caption="Archiver">
+                            <include formName="frmArchiveAll" method="POST" targetId="divActionMessage" targetURL="archiverFichesParMois.do">
+                                <include targetId="_ajxContent" targetURL="aArchiver.do"/>
+                            </include>
+                            <function script="return true;"/>
+                        </button>
+                        <button caption="Annuler">
+                            <function script="return true;"/>
+                        </button>
+                    </dialog>
+                    <include targetId="lb-Archiver-box" targetURL="fichesParMois.do"/>
+                </includeDialog>
+            </js>
+        </request>
+        <request requestURL="main.do">
+            <js triggerEvent="click" triggerSelector="#btShowHelp">
+                <include targetId="fixedHelp" targetURL="helpIndex.do"/>
+                <includeDialog>
+                    <dialog condition="$('lb-Aide_contextuelle-box-boxContent')==null" modal="false" title="Aide contextuelle">
+                        <button caption="Ancrer">
+                            <function script="$('fixedHelp').innerHTML='';Forms.Utils.Anchor('lb-Aide_contextuelle-box-boxContent','fixedHelp');$('lb-Aide_contextuelle-box-boxContent').className='';return true;"/>
+                        </button>
+                        <button caption="Fermer">
+                            <function script="Forms.DOM.remove('lb-Aide_contextuelle-box');return true;"/>
+                        </button>
+                    </dialog>
+                    <include targetId="lb-Aide_contextuelle-box" targetURL="help.do"/>
+                </includeDialog>
+            </js>
+        </request>
+        <request requestURL="{#(.*?)#}.do">
+            <js triggerEvent="load" triggerSelector="body">
+                <include condition="$('lb-Aide_contextuelle-box-boxContent')!=null" targetId="lb-Aide_contextuelle-box-boxContent" targetURL="help.do"/>
+            </js>
+        </request>
+        <request requestURL="invalidControl.do">
+            <js triggerEvent="load" triggerSelector="body">
+                <include targetId="divMenu" targetURL="menu.do">
+                    <include targetId="divMessageConnexion" targetURL="infoUser.do">
+                        <message targetId="divMain">'Vous devez vous connecter.'</message>
+                    </include>
+                </include>
+            </js>
+        </request>
+        <request requestURL="helpIndex.do">
+            <js triggerEvent="load" triggerSelector="body">
+                <selector allowNull="false" event="click" selectedStyle="{'fontWeight':'bolder','backgroundColor':'#D5CDA2'}" selector="#indexHelp a" startIndex="0">
+                    <include targetId="divAction" targetURL="showHelpByIndex.do?helpId={js:target.id}"/>
+                </selector>
+            </js>
+        </request>
+    </ajax-includes>
+</mainController>
